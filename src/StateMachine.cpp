@@ -1,32 +1,35 @@
-#include <iostream>
 #include <sstream>
 #include "StateMachine.h"
 #include "Exception.h"
+#include "Utils.h"
 
 StateMachine::StateMachine(Entity* manager) :
-    isQuit(false)
+	isQuit(false)
 {
-    entityStack.push(manager);
+	manager->LoadFromFile();
+	entityStack.push(manager);
 }
 
 void StateMachine::ParseCommand(const std::string& cmdLine)
 {
-    if (cmdLine.empty()) {
-        return;
-    }
-    std::string cmd = Utils::ToUpperString(cmdLine);
-    if (cmd == "EXIT") {
-        ParseExit();
-    } else if (cmd == "BACK") {
-        ParseBack();
-    } else {
-        ParseEntity(cmdLine);
-    }
+	std::istringstream iss(cmdLine);
+	std::string cmd;
+	iss >> cmd;
+	cmd = Utils::ToUpperString(cmd);
+	if (cmd.empty()) {
+		return;
+	} else if (cmd == "EXIT") {
+		ParseExit();
+	} else if (cmd == "BACK") {
+		ParseBack();
+	} else {
+		ParseEntity(cmdLine);
+	}
 }
 
 void StateMachine::PrintEntityStack() const
 {
-    std::stack<Entity*>copy = entityStack;
+	std::stack<Entity*>copy = entityStack;
 	std::stack<Entity*>reversed;
 	while (!copy.empty()) {
 		reversed.push(copy.top());
@@ -41,27 +44,36 @@ void StateMachine::PrintEntityStack() const
 
 bool StateMachine::IsQuit() const
 {
-    return isQuit;
+	return isQuit;
 }
 
 void StateMachine::ParseExit()
 {
-    isQuit = true;
+	while (entityStack.size() > 1) {
+		entityStack.pop();
+	}
+	Entity* manager = entityStack.top();
+	delete manager;
+	entityStack.pop();
+	isQuit = true;
 }
 
 void StateMachine::ParseBack()
 {
-    if (entityStack.size() <= 1) {
-        throw Exception("Already at top level");
-    }
-    entityStack.pop();
+	if (entityStack.size() <= 1) {
+		throw Exception("No parent directory");
+	}
+	entityStack.pop();
+	Entity* parent = entityStack.top();
+	parent->LoadFromFile();
 }
 
 void StateMachine::ParseEntity(const std::string& cmdLine)
 {
-    Entity* current = entityStack.top();
-    Entity* next = current->ParseCommand(cmdLine);
-    if (next != nullptr) {
-        entityStack.push(next);
-    }
+	Entity* parent = entityStack.top();
+	Entity* child = parent->ParseCommand(cmdLine);
+	if (child != nullptr) {
+		child->LoadFromFile();
+		entityStack.push(child);
+	}
 }

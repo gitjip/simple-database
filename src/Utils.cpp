@@ -1,36 +1,36 @@
 #include <algorithm>
 #include "Utils.h"
 
-std::string Utils::ToName(EntityType entityType)
+std::string Utils::ToName(EntityType et)
 {
-    if (entityType == EntityType::MANAGER) {
-        return "MANAGER";
-    } else if (entityType == EntityType::DATABASE) {
-        return "DATABASE";
-    } else if (entityType == EntityType::TABLE) {
-        return "TABLE";
-    } else if (entityType == EntityType::RECORD) {
-        return "RECORD";
-    } else if (entityType == EntityType::FIELD) {
-        return "FIELD";
-    } else {
-        throw Exception("Invalid entity type");
-    }
+	if (et == EntityType::MANAGER) {
+		return "Manager";
+	} else if (et == EntityType::DATABASE) {
+		return "Database";
+	} else if (et == EntityType::TABLE) {
+		return "Table";
+	} else if (et == EntityType::RECORD) {
+		return "Record";
+	} else if (et == EntityType::FIELD) {
+		return "Field";
+	} else {
+		throw Exception("Invalid entity type");
+	}
 }
 
-std::string Utils::ToName(DataType dataType)
+std::string Utils::ToName(DataType dt)
 {
-    if (dataType == DataType::INT) {
-        return "INT";
-    } else if (dataType == DataType::BOOL) {
-        return "BOOL";
-    } else if (dataType == DataType::FLOAT) {
-        return "FLOAT";
-    } else if (dataType == DataType::STRING) {
-        return "STRING";
-    } else {
-        throw Exception("Invalid data type");
-    }
+	if (dt == DataType::INT) {
+		return "INT";
+	} else if (dt == DataType::BOOL) {
+		return "BOOL";
+	} else if (dt == DataType::FLOAT) {
+		return "FLOAT";
+	} else if (dt == DataType::STRING) {
+		return "STRING";
+	} else {
+		throw Exception("Invalid data type");
+	}
 }
 
 Utils::DataType Utils::ToDataType(std::string name)
@@ -51,6 +51,6 @@ Utils::DataType Utils::ToDataType(std::string name)
 
 std::string Utils::ToUpperString(std::string str)
 {
-    std::transform(str.begin(), str.end(), str.begin(), ::toupper);
-    return str;
+	std::transform(str.begin(), str.end(), str.begin(), ::toupper);
+	return str;
 }

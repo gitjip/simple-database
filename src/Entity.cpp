@@ -2,14 +2,14 @@
 #include "Exception.h"
 
 Entity::Entity(const std::filesystem::path& path) :
-    storagePath(path)
+	storagePath(path)
 {
-    if (path.empty()) {
-        throw Exception("File path empty");
-    }
+	if (path.empty()) {
+		throw Exception("File path empty");
+	}
 }
 
 std::filesystem::path Entity::ToPath(const std::string& stem, const std::string& extension) const
 {
-    return storagePath.string() + "/" + stem + (extension.empty() ? "" : ".") + extension;
+	return storagePath.string() + "/" + stem + (extension.empty() ? "" : ".") + extension;
 }
