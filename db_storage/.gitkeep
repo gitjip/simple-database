@@ -1,0 +1,6 @@
+mkdir -p db_storage
+touch db_storage/.gitkeep
+
+git add db_storage/.gitkeep
+git commit -m "Add .gitkeep to preserve db_storage directory"
+git push
