@@ -26,16 +26,17 @@ void StateMachine::ParseCommand(const std::string& cmdLine)
 
 void StateMachine::PrintEntityStack() const
 {
-    std::stack<Entity*> copy = entityStack;
-    std::vector<Entity*> entities;
-    while (!copy.empty()) {
-        entities.push_back(copy.top());
-        copy.pop();
-    }
-    for (auto it = entities.rbegin(); it != entities.rend(); ++it) {
-        std::cout << Utils::ToName((*it)->GetType()) << " " << (*it)->GetName() << " > ";
-    }
-    std::cout << std::endl;
+    std::stack<Entity*>copy = entityStack;
+	std::stack<Entity*>reversed;
+	while (!copy.empty()) {
+		reversed.push(copy.top());
+		copy.pop();
+	}
+	while (!reversed.empty()) {
+		std::cout << Utils::ToName(reversed.top()->GetType()) << ":"
+			<< reversed.top()->GetName() << (reversed.size() > 1 ? "\\" : ">");
+		reversed.pop();
+	}
 }
 
 bool StateMachine::IsQuit() const
