@@ -1,0 +1,3 @@
+D:/Users/damin/Documents/Microsoft VS Code/files/projects/simple-database/build/CMakeFiles/SimpleDB.dir
+D:/Users/damin/Documents/Microsoft VS Code/files/projects/simple-database/build/CMakeFiles/ALL_BUILD.dir
+D:/Users/damin/Documents/Microsoft VS Code/files/projects/simple-database/build/CMakeFiles/ZERO_CHECK.dir
