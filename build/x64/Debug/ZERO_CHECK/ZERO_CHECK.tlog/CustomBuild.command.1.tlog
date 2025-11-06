@@ -1,0 +1,10 @@
+^D:\USERS\DAMIN\DOCUMENTS\MICROSOFT VS CODE\FILES\PROJECTS\SIMPLE-DATABASE\BUILD\CMAKEFILES\DF8B21A0D1405682A15833236741C87A\GENERATE.STAMP.RULE
+setlocal
+"D:\Program Files\CMake\bin\cmake.exe" "-SD:/Users/damin/Documents/Microsoft VS Code/files/projects/simple-database" "-BD:/Users/damin/Documents/Microsoft VS Code/files/projects/simple-database/build" --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file "D:/Users/damin/Documents/Microsoft VS Code/files/projects/simple-database/build/SimpleDB.sln"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

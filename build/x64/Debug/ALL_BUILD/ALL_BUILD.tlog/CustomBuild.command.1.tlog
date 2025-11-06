@@ -1,0 +1,10 @@
+^D:\USERS\DAMIN\DOCUMENTS\MICROSOFT VS CODE\FILES\PROJECTS\SIMPLE-DATABASE\CMAKELISTS.TXT
+setlocal
+"D:\Program Files\CMake\bin\cmake.exe" "-SD:/Users/damin/Documents/Microsoft VS Code/files/projects/simple-database" "-BD:/Users/damin/Documents/Microsoft VS Code/files/projects/simple-database/build" --check-stamp-file "D:/Users/damin/Documents/Microsoft VS Code/files/projects/simple-database/build/CMakeFiles/generate.stamp"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

@@ -311,20 +311,10 @@ void Table::LoadSchema(std::ifstream& ifs)
 
 void Table::LoadRecords(std::ifstream& ifs)
 {
-    for (auto record : records) {
-        delete record;
-    }
-    records.clear();
-    std::string line;
-    while (std::getline(ifs, line)) {
-        if (line.empty()) {
-            continue;
-        }
-        std::istringstream iss(line);
-        Record* record = new Record(schema);
-        iss >> *record;
-        records.push_back(record);
-    }
+    Record record;
+	while (ifs >> (record = schema)) {
+		records.emplace_back(new Record(record));
+	}
 }
 
 void Table::PrintDividerLine() const
