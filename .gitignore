@@ -39,3 +39,22 @@
 
 # debug information files
 *.dwo
+
+# ===========================================
+# SimpleDB Project Specific Rules
+# ===========================================
+
+# Executable
+SimpleDB
+
+# Database storage files (ignore data but keep directory)
+db_storage/*.txt
+!db_storage/.gitkeep
+
+# Build directories
+build/
+bin/
+
+# IDE
+.vscode/
+.idea/
