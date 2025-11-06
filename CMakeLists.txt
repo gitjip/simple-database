@@ -4,10 +4,8 @@ project(SimpleDB)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# 包含目录
 include_directories(include)
 
-# 源文件
 set(SOURCES
     src/Database.cpp
     src/Entity.cpp
@@ -22,5 +20,4 @@ set(SOURCES
     src/Utils.cpp
 )
 
-# 可执行文件
 add_executable(SimpleDB ${SOURCES})
