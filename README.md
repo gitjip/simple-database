@@ -50,61 +50,65 @@ g++ -std=c++17 -Iinclude src/*.cpp -o SimpleDB
 
 ### 全局命令
 
-| 命令 | 说明 | 示例 |
-|------|------|------|
-| `EXIT` | 退出系统 | `EXIT` |
+| 命令     | 说明       | 示例     |
+| -------- | ---------- | -------- |
+| `EXIT` | 退出系统   | `EXIT` |
 | `BACK` | 返回上一级 | `BACK` |
 
 ### Manager 级别命令
 
 在系统启动时的顶级管理界面使用：
 
-| 命令 | 语法 | 说明 | 示例 |
-|------|------|------|------|
-| **CREATE DATABASE** | `CREATE DATABASE <db_name>` | 创建数据库 | `CREATE DATABASE school` |
-| **DROP DATABASE** | `DROP DATABASE <db_name>` | 删除数据库 | `DROP DATABASE school` |
-| **ALTER DATABASE** | `ALTER DATABASE <old_name> <new_name>` | 重命名数据库 | `ALTER DATABASE school university` |
-| **USE DATABASE** | `USE DATABASE <db_name>` | 进入数据库 | `USE DATABASE school` |
-| **SELECT DATABASE** | `SELECT DATABASE` | 查看所有数据库 | `SELECT DATABASE` |
+| 命令                      | 语法                                     | 说明           | 示例                                 |
+| ------------------------- | ---------------------------------------- | -------------- | ------------------------------------ |
+| **CREATE DATABASE** | `CREATE DATABASE <db_name>`            | 创建数据库     | `CREATE DATABASE school`           |
+| **DROP DATABASE**   | `DROP DATABASE <db_name>`              | 删除数据库     | `DROP DATABASE school`             |
+| **ALTER DATABASE**  | `ALTER DATABASE <old_name> <new_name>` | 重命名数据库   | `ALTER DATABASE school university` |
+| **USE DATABASE**    | `USE DATABASE <db_name>`               | 进入数据库     | `USE DATABASE school`              |
+| **SELECT DATABASE** | `SELECT DATABASE`                      | 查看所有数据库 | `SELECT DATABASE`                  |
 
 ### Database 级别命令
 
 在数据库界面使用：
 
-| 命令 | 语法 | 说明 | 示例 |
-|------|------|------|------|
-| **CREATE TABLE** | `CREATE TABLE <table_name> <schema_definition>` | 创建数据表 | `CREATE TABLE students id INT name STRING age INT` |
-| **DROP TABLE** | `DROP TABLE <table_name>` | 删除数据表 | `DROP TABLE students` |
-| **ALTER TABLE** | `ALTER TABLE <old_name> <new_name>` | 重命名数据表 | `ALTER TABLE students pupils` |
-| **USE TABLE** | `USE TABLE <table_name>` | 进入数据表 | `USE TABLE students` |
-| **SELECT TABLE** | `SELECT TABLE` | 查看所有数据表 | `SELECT TABLE` |
+| 命令                   | 语法                                              | 说明           | 示例                                                 |
+| ---------------------- | ------------------------------------------------- | -------------- | ---------------------------------------------------- |
+| **CREATE TABLE** | `CREATE TABLE <table_name> <schema_definition>` | 创建数据表     | `CREATE TABLE students id INT name STRING age INT` |
+| **DROP TABLE**   | `DROP TABLE <table_name>`                       | 删除数据表     | `DROP TABLE students`                              |
+| **ALTER TABLE**  | `ALTER TABLE <old_name> <new_name>`             | 重命名数据表   | `ALTER TABLE students pupils`                      |
+| **USE TABLE**    | `USE TABLE <table_name>`                        | 进入数据表     | `USE TABLE students`                               |
+| **SELECT TABLE** | `SELECT TABLE`                                  | 查看所有数据表 | `SELECT TABLE`                                     |
 
 **Schema 定义格式：**
+
 ```
 <field1_name> <data_type> <field2_name> <data_type> ...
 ```
+
 支持的数据类型：`INT`, `BOOL`, `FLOAT`, `STRING`
 
 ### Table 级别命令
 
 在数据表界面使用：
 
-| 命令 | 语法 | 说明 | 示例 |
-|------|------|------|------|
-| **INSERT RECORD** | `INSERT RECORD <field1_value> <field2_value> ...` | 插入记录 | `INSERT RECORD 1 "Alice" 20` |
-| **REMOVE RECORD** | `REMOVE RECORD WHERE <field_name> <value>` | 删除符合条件的记录 | `REMOVE RECORD WHERE id 1` |
-| **UPDATE RECORD** | `UPDATE RECORD SET <field_name> <new_value> WHERE <condition_field> <condition_value>` | 更新记录 | `UPDATE RECORD SET age 21 WHERE name "Alice"` |
-| **SELECT RECORD** | `SELECT RECORD WHERE <field_name> <value>` | 查询符合条件的记录 | `SELECT RECORD WHERE age 20` |
-| **SELECT RECORD *** | `SELECT RECORD *` | 查询所有记录 | `SELECT RECORD *` |
+| 命令                    | 语法                                                                                     | 说明               | 示例                                            |
+| ----------------------- | ---------------------------------------------------------------------------------------- | ------------------ | ----------------------------------------------- |
+| **INSERT RECORD** | `INSERT RECORD <field1_value> <field2_value> ...`                                      | 插入记录           | `INSERT RECORD 1 "Alice" 20`                  |
+| **REMOVE RECORD** | `REMOVE RECORD WHERE <field_name> <value>`                                             | 删除符合条件的记录 | `REMOVE RECORD WHERE id 1`                    |
+| **UPDATE RECORD** | `UPDATE RECORD SET <field_name> <new_value> WHERE <condition_field> <condition_value>` | 更新记录           | `UPDATE RECORD SET age 21 WHERE name "Alice"` |
+| **SELECT RECORD** | `SELECT RECORD WHERE <field_name> <value>`                                             | 查询符合条件的记录 | `SELECT RECORD WHERE age 20`                  |
+| **SELECT RECORD** | `SELECT RECORD *`                                                                      | 查询所有记录       | `SELECT RECORD *`                             |
 
 ## 完整使用示例
 
 ### 1. 启动系统
+
 ```bash
 ./SimpleDB
 ```
 
 ### 2. 创建数据库
+
 ```
 Manager > CREATE DATABASE school
 Database school created
@@ -113,6 +117,7 @@ Manager > USE DATABASE school
 ```
 
 ### 3. 创建数据表
+
 ```
 Database:school > CREATE TABLE students id INT name STRING age INT score FLOAT
 Table students created
@@ -121,6 +126,7 @@ Database:school > USE TABLE students
 ```
 
 ### 4. 插入记录
+
 ```
 Table:students > INSERT RECORD 1 "Alice" 20 95.5
 Record inserted successfully
@@ -133,6 +139,7 @@ Record inserted successfully
 ```
 
 ### 5. 查询记录
+
 ```
 Table:students > SELECT RECORD *
 TABLE VIEW:
@@ -146,6 +153,7 @@ TABLE VIEW:
 ```
 
 ### 6. 条件查询
+
 ```
 Table:students > SELECT RECORD WHERE age 20
 RECORDS SELECTED:
@@ -157,18 +165,21 @@ RECORDS SELECTED:
 ```
 
 ### 7. 更新记录
+
 ```
 Table:students > UPDATE RECORD SET score 96.0 WHERE name "Alice"
 Records modified successfully
 ```
 
 ### 8. 删除记录
+
 ```
 Table:students > REMOVE RECORD WHERE name "Bob"
 Records removed successfully
 ```
 
 ### 9. 返回上级
+
 ```
 Table:students > BACK
 
@@ -181,6 +192,7 @@ DATABASE VIEW:
 ```
 
 ### 10. 退出系统
+
 ```
 Manager > EXIT
 System exited with everything saved
@@ -188,11 +200,11 @@ System exited with everything saved
 
 ## 数据类型说明
 
-| 数据类型 | 说明 | 示例值 |
-|----------|------|--------|
-| `INT` | 整数类型 | `123`, `-45` |
-| `BOOL` | 布尔类型 | `TRUE`, `FALSE` |
-| `FLOAT` | 浮点数类型 | `3.14`, `-2.5` |
+| 数据类型   | 说明       | 示例值                   |
+| ---------- | ---------- | ------------------------ |
+| `INT`    | 整数类型   | `123`, `-45`         |
+| `BOOL`   | 布尔类型   | `TRUE`, `FALSE`      |
+| `FLOAT`  | 浮点数类型 | `3.14`, `-2.5`       |
 | `STRING` | 字符串类型 | `"Hello"`, `"Alice"` |
 
 ## 文件存储结构
@@ -212,6 +224,7 @@ db_storage/
 ## 错误处理
 
 系统提供详细的错误信息，常见错误包括：
+
 - 语法错误：命令格式不正确
 - 名称冲突：数据库/表已存在
 - 找不到对象：数据库/表不存在
@@ -221,6 +234,7 @@ db_storage/
 ## 开发说明
 
 ### 项目结构
+
 ```
 SimpleDB/
 ├── include/           # 头文件
@@ -230,6 +244,7 @@ SimpleDB/
 ```
 
 ### 核心类说明
+
 - `Manager`: 顶级管理器，管理所有数据库
 - `Database`: 数据库，管理所有数据表
 - `Table`: 数据表，包含表结构和记录
@@ -245,6 +260,7 @@ Copyright (c) 2025 Jilin University Software Institute
 ## 技术支持
 
 如遇到问题，请检查：
+
 1. 命令语法是否正确
 2. 数据类型是否匹配
 3. 文件读写权限
